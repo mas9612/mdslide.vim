@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! mdslide#openBrowser()
-  call system("open http://localhost:8000")
+  call system("open http://localhost:8000/view/index.html")
 endfunction
 
 let s:dir_path = expand('<sfile>:p:h')
@@ -24,7 +24,7 @@ function! mdslide#stopServer()
   endif
 endfunction
 
-" let s:dir_path = expand('<sfile>:p:h')
+let s:contents_js_path = expand('<sfile>:p:h:h')
 function! mdslide#refresh_content()
   " read from current file
   let contents = getline(1, '$')
@@ -41,7 +41,7 @@ function! mdslide#refresh_content()
   " TODO: convert relative image path to absolute path
 
   " write entire contents to content.js
-  let output_path = s:dir_path . '/js/mdslide/contents.js'
+  let output_path = s:contents_js_path . '/view/js/mdslide/contents.js'
 
   call writefile([
     \ 'function filepath() {',
