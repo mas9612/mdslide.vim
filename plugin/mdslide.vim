@@ -14,7 +14,14 @@ augroup MdSlide
   autocmd!
 augroup END
 
+let s:base_dir = expand('<sfile>:p:h:h')
 function! s:init()
+  " If view/js/mdslide/contents.js is not exists, create it.
+  if !filereadable(s:base_dir . '/view/js/mdslide/contents.js')
+    execute "redir > " . s:base_dir . '/view/js/mdslide/contents.js'
+    redir END
+  endif
+
   augroup MdSlide
     autocmd BufWritePost <buffer> :call mdslide#refresh_content()
   augroup END
