@@ -3,10 +3,14 @@
 # -*- coding: utf-8 -*-
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
+import os
 import sys
 
 
 def main(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
+    document_root = sys.argv[1].strip()
+    os.chdir(document_root)
+
     server_address = ('', 8000)
     httpd = server_class(server_address, handler_class)
     try:
