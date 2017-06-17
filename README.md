@@ -9,6 +9,7 @@ To use mdslide.vim, you need to install Python3 to your computer and add it to `
 * to be able to use image
 * write test
 * write documents
+* correspond to Python2 (not only Python3)
 
 ## How to use
 
