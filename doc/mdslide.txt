@@ -1,0 +1,69 @@
+*mdslide.txt*	Create Web slide with Markdown	Last change: 2017 July 11
+
+Author: mas9612 <mas9612@gmail.com>
+Version: beta
+License: MIT  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject
+    to the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+}}}
+
+CONTENTS					*mdslide-contents*
+
+Introduction		|mdslide|
+Commands		|mdslide-commands|
+Variables		|mdslide-variables|
+
+==============================================================================
+INTRODUCTION					*mdslide*
+
+mdslide.vim is a plugin to create Web slide with Markdown.
+
+==============================================================================
+COMMNADS					*mdslide-commands*
+
+:MdOpenSlide					*:MdOpenSlide*
+		Open Web slide. Before use this command, you must set
+		|g:mdslide_open_browser_cmd|.
+
+:MdRefreshContent				*:MdRefreshContent*
+		Force to refresh slide contents by current buffer.
+
+:MdStartServer					*:MdStartServer*
+		Start local Web server to show Web slide correctly.
+		You must run this command before open Web slide with
+		|:MdOpenSlide| command.
+
+:MdStopServer					*:MdStopServer*
+		Stop running local Web server. Currently, this command uses
+		UNIX ps command. So not work in windows.
+
+==============================================================================
+VARIABLES					*mdslide-variables*
+
+g:mdslide_open_browser_cmd			*g:mdslide_open_browser_cmd*
+		Set commands to open Web slide. This variable is used in
+		|:MdOpenSlide| command. Note: If you don't set this variable
+		when using |:MdOpenSlide|, you will get an error and Web slide
+		will not open.
+
+		Example >
+		let g:mdslide_open_browser_cmd = 'open -a Google\ Chrome'
+<
+
+vim:tw=78:ts=8:ft=help:norl:noet:fen:fdl=0:
