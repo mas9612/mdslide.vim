@@ -6,7 +6,13 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! mdslide#openBrowser()
-  call system("open http://localhost:8000/")
+  if !exists('g:mdslide_open_browser_cmd')
+    echohl ErrorMsg
+    echo 'To open browser, please set g:mdslide_open_browser_cmd variable.'
+    echohl None
+  else
+    call system(g:mdslide_open_browser_cmd . ' http://localhost:8000/')
+  endif
 endfunction
 
 let s:base_dir = expand('<sfile>:p:h:h')
