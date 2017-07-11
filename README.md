@@ -1,6 +1,6 @@
 # mdslide.vim
 
-mdslide.vim is a plugin to create Web slide with Markdown and reveal.js.
+mdslide.vim is a plugin to create Web slide with Markdown.
 
 To use mdslide.vim, you need to install Python3 to your computer and add it to `$PATH` .
 
