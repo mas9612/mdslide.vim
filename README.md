@@ -8,7 +8,7 @@ To use mdslide.vim, you need to install Python3 to your computer and add it to `
 
 ## TODO
 
-* to be able to use image
+* to be able to use image like `../image.png`
 * write test
 * correspond to Python2 (not only Python3)
 
