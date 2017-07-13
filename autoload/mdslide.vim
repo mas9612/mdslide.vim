@@ -5,21 +5,22 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:base_dir = expand('<sfile>:p:h:h')
+
 function! mdslide#openBrowser()
   if !exists('g:mdslide_open_browser_cmd')
     echohl ErrorMsg
     echo 'To open browser, please set g:mdslide_open_browser_cmd variable.'
     echohl None
   else
-    call system(g:mdslide_open_browser_cmd . ' http://localhost:8000/')
+    let html_path = s:base_dir . '/view/'
+    call system(g:mdslide_open_browser_cmd . ' http://localhost:8000' . html_path)
   endif
 endfunction
 
-let s:base_dir = expand('<sfile>:p:h:h')
 function! mdslide#startServer()
   let script_path = s:base_dir . '/autoload/server.py'
-  let document_root = s:base_dir . '/view/'
-  call system(script_path . ' ' . document_root . ' &')
+  call system(script_path . ' &')
 endfunction
 
 function! mdslide#stopServer()

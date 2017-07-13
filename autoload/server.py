@@ -8,7 +8,10 @@ import sys
 
 
 def main(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
-    document_root = sys.argv[1].strip()
+    if len(sys.argv) < 2:
+        document_root = '/'
+    else:
+        document_root = sys.argv[1].strip()
     os.chdir(document_root)
 
     server_address = ('', 8000)
