@@ -42,10 +42,30 @@ function! mdslide#refresh_content()
     let line = substitute(line, '\\', '\\\\', 'g')
     let line = substitute(line, '"', '\\"', 'g')
     let line = substitute(line, '''', '\\''', 'g')
+
+    " convert relative image path to absolute
+    let imagepath = matchstr(line, '\v\(\zs.+\ze\)')
+    let origin_imagepath = imagepath
+    if imagepath !=# ''
+      " is relative path
+      if imagepath[0] !=# '/'
+        " convert to absolute path
+        if imagepath[0:1] ==# '~/'
+          let homedir = expand('~')
+          let imagepath = substitute(imagepath, '\V~', homedir, '')
+        elseif filepath[0:1] ==# './'
+          let curdir = getcwd()
+          let filepath = substitute(imagepath, '\V.', curdir, '')
+        else
+          let curdir = getcwd()
+          let filepath = getcwd() . '/' . imagepath
+        endif
+      endif
+      let line = substitute(line, '\V' . origin_imagepath, imagepath, '')
+    endif
+
     call add(escaped, line)
   endfor
-
-  " TODO: convert relative image path to absolute path
 
   " write entire contents to content.js
   let output_path = s:base_dir . '/view/js/mdslide/contents.js'
