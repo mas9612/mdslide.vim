@@ -44,7 +44,7 @@ function! mdslide#refresh_content()
     let line = substitute(line, '''', '\\''', 'g')
 
     " convert relative image path to absolute
-    let imagepath = matchstr(line, '\v\(\zs.+\ze\)')
+    let imagepath = matchstr(line, '\v!\[.+\]\(\zs[^ "]+\ze.*\)')
     let origin_imagepath = imagepath
     if imagepath !=# ''
       " is relative path
@@ -53,15 +53,18 @@ function! mdslide#refresh_content()
         if imagepath[0:1] ==# '~/'
           let homedir = expand('~')
           let imagepath = substitute(imagepath, '\V~', homedir, '')
-        elseif filepath[0:1] ==# './'
-          let curdir = getcwd()
-          let filepath = substitute(imagepath, '\V.', curdir, '')
+        elseif imagepath[0:1] ==# './'
+          let curdir = expand('%:p:h')
+          let imagepath = substitute(imagepath, '\V.', curdir, '')
+        elseif imagepath[0:2] ==# '../'
+          let curdir = expand('%:p:h')
+          let imagepath = curdir . '/' . imagepath
         else
-          let curdir = getcwd()
-          let filepath = getcwd() . '/' . imagepath
+          let curdir = expand('%:p:h')
+          let imagepath = curdir . '/' . imagepath
         endif
       endif
-      let line = substitute(line, '\V' . origin_imagepath, imagepath, '')
+      let line = substitute(line, '\V(\zs' . origin_imagepath . '\ze)', imagepath, '')
     endif
 
     call add(escaped, line)
