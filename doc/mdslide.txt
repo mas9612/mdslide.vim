@@ -54,7 +54,7 @@ COMMNADS					*mdslide-commands*
 
 :MdStopServer					*:MdStopServer*
 		Stop running local Web server. Currently, this command uses
-		UNIX ps command. So not work in windows.
+		UNIX ps command. So not work in Windows.
 
 ==============================================================================
 VARIABLES					*mdslide-variables*
