@@ -8,11 +8,6 @@ If you don't know the Markdown notation in reveal.js, please see https://github.
 
 To use mdslide.vim, you need to install Python3 to your computer and add it to `$PATH` .
 
-## TODO
-
-* write test
-* correspond to Python2 (not only Python3)
-
 ## Commands
 
 ### :MdOpenSlide
