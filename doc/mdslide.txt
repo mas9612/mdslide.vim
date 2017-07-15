@@ -45,6 +45,8 @@ COMMNADS					*mdslide-commands*
 
 :MdRefreshContent				*:MdRefreshContent*
 		Force to refresh slide contents by current buffer.
+		Normally, the slide contents will be updated automatically, so
+		you don't need to use this command explicitly.
 		Note that this command is not refresh browser.
 
 :MdStartServer					*:MdStartServer*
