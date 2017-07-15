@@ -1,7 +1,7 @@
 (function() {
     initialize();
 
-    // window.setInterval(updateContent, 1000);
+    window.setInterval(updateContent, 1000);
 })();
 
 function initialize() {
@@ -31,13 +31,10 @@ function initialize() {
 
 function updateContent() {
     $.getScript('js/mdslide/contents.js', function() {
-        var last_updated = localStorage.getItem('mdslide_last_refresh');
-        var last_modified = last_modified();
+        var last_updated_time = localStorage.getItem('mdslide_last_refresh');
+        var last_modified_time = last_modified();
 
-        console.log('last_updated: ' + last_updated);
-        console.log('last_modified: ' + last_modified);
-
-        if (last_modified > last_updated) {
+        if (last_modified_time > last_updated_time) {
             // need to update slide
             location.reload();
         }
