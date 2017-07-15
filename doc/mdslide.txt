@@ -33,6 +33,9 @@ Variables		|mdslide-variables|
 INTRODUCTION					*mdslide*
 
 mdslide.vim is a plugin to create Web slide with Markdown.
+Once open Web slide, it will be refreshed automatically when Markdown file is
+updated. So you don't need to refresh browser manually after edit original
+Markdown file.
 If you don't know the Markdown notation in reveal.js, please see
 https://github.com/hakimel/reveal.js/#markdown.
 
@@ -47,7 +50,8 @@ COMMNADS					*mdslide-commands*
 		Force to refresh slide contents by current buffer.
 		Normally, the slide contents will be updated automatically, so
 		you don't need to use this command explicitly.
-		Note that this command is not refresh browser.
+		Note that this command does not refresh browser but browser
+		contents will be refreshed every seconds.
 
 :MdStartServer					*:MdStartServer*
 		Start local Web server to show Web slide correctly.
