@@ -1,7 +1,7 @@
 *mdslide.txt*	Create Web slide with Markdown	Last change: 2017 July 11
 
 Author: mas9612 <mas9612@gmail.com>
-Version: 1.0
+Version: 1.1
 License: MIT  {{{
     Permission is hereby granted, free of charge, to any person obtaining
     a copy of this software and associated documentation files (the
