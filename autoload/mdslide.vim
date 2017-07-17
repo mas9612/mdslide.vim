@@ -43,6 +43,23 @@ function! mdslide#stopServer()
   call delete(pid_file)
 endfunction
 
+function! mdslide#restartServer()
+  call mdslide#stopServer()
+  call mdslide#startServer()
+endfunction
+
+function! mdslide#getServerStatus()
+  let pid_file = s:base_dir . '/plugin/mdslide_server.pid'
+  if filereadable(pid_file)
+    let lines = readfile(pid_file)
+    let pid = lines[0]
+
+    echo 'Server is running. PID: ' . pid
+  else
+    echo 'Server is not running.'
+  endif
+endfunction
+
 function! mdslide#refresh_content()
   " read from current file
   let contents = getline(1, '$')

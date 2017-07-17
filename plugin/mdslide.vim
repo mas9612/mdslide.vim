@@ -43,6 +43,14 @@ if !exists(":MdStopServer")
   command! -nargs=0 MdStopServer :call mdslide#stopServer()
 endif
 
+if !exists(":MdRestartServer")
+  command! -nargs=0 MdRestartServer :call mdslide#restartServer()
+endif
+
+if !exists(":MdServerStatus")
+  command! -nargs=0 MdServerStatus :call mdslide#getServerStatus()
+endif
+
 augroup MdSlide
   autocmd FileType markdown :call s:init()
 augroup END
