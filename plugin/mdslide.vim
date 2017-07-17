@@ -10,10 +10,6 @@ let g:loaded_mdslide = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-augroup MdSlide
-  autocmd!
-augroup END
-
 let s:base_dir = expand('<sfile>:p:h:h')
 function! s:init()
   " If view/js/mdslide/contents.js is not exists, create it.
@@ -23,6 +19,7 @@ function! s:init()
   endif
 
   augroup MdSlide
+    autocmd!
     autocmd BufWritePost <buffer> :call mdslide#refresh_content()
   augroup END
 endfunction
