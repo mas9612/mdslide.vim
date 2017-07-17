@@ -19,8 +19,13 @@ function! mdslide#openBrowser()
 endfunction
 
 function! mdslide#startServer()
-  let script_path = s:base_dir . '/autoload/server.py ' . s:base_dir
-  call system(script_path . ' &')
+  let pid_file = s:base_dir . '/plugin/mdslide_server.pid'
+  if filereadable(pid_file)
+    echo 'Local server is already running.'
+  else
+    let script_path = s:base_dir . '/autoload/server.py ' . s:base_dir
+    call system(script_path . ' &')
+  endif
 endfunction
 
 function! mdslide#stopServer()
