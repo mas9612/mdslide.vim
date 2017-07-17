@@ -8,11 +8,18 @@ import sys
 
 
 def main(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
-    if len(sys.argv) < 2:
-        document_root = '/'
-    else:
-        document_root = sys.argv[1].strip()
+    document_root = '/'
     os.chdir(document_root)
+
+    if len(sys.argv) < 2:
+        print('Usage: {} plugin_base_dir'.format(sys.argv[0].strip()))
+        sys.exit(1)
+
+    mdslide_base_dir = sys.argv[1].strip()
+
+    pid = os.getpid()
+    with open('{}/plugin/mdslide_server.pid'.format(mdslide_base_dir), 'w') as f:
+        f.write('{}'.format(pid))
 
     server_address = ('', 8000)
     httpd = server_class(server_address, handler_class)

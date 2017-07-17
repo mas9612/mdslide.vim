@@ -19,17 +19,23 @@ function! mdslide#openBrowser()
 endfunction
 
 function! mdslide#startServer()
-  let script_path = s:base_dir . '/autoload/server.py'
+  let script_path = s:base_dir . '/autoload/server.py ' . s:base_dir
   call system(script_path . ' &')
 endfunction
 
 function! mdslide#stopServer()
-  let pid = system("ps aux | grep \"[s]erver.py\" | awk '{print $2}'")
+  let pid_file = s:base_dir . '/plugin/mdslide_server.pid'
+  if filereadable(pid_file)
+    let lines = readfile(pid_file)
+    let pid = lines[0]
 
-  if pid !=? ""
-    let command = "kill " . pid
-    call system(command)
+    if pid !=? ""
+      let command = "kill " . pid
+      call system(command)
+    endif
   endif
+
+  call delete(pid_file)
 endfunction
 
 function! mdslide#refresh_content()
