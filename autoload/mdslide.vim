@@ -23,7 +23,7 @@ function! mdslide#startServer()
   if filereadable(pid_file)
     echo 'Local server is already running.'
   else
-    let script_path = s:base_dir . '/autoload/server.py ' . s:base_dir
+    let script_path = s:base_dir . '/scripts/server.py ' . s:base_dir
     call system(script_path . ' &')
   endif
 endfunction
