@@ -8,12 +8,11 @@ function initialize() {
     var content = document.getElementById('content');
 
     var section = document.createElement('section');
-    // TODO: change to be able to change their value from vimrc parameter
     section.setAttribute('data-markdown', '');  // add attribute without value
-    section.setAttribute('data-separator', '^\r?\n---\r?\n$');
-    section.setAttribute('data-separator-vertical', '^\r?\n\r?\n\r?\n');
-    section.setAttribute('data-separator-notes', '^note:');
-    section.setAttribute('data-charset', 'utf-8');
+    section.setAttribute('data-separator', '{{ separator }}');
+    section.setAttribute('data-separator-vertical', '{{ separator_vertical }}');
+    section.setAttribute('data-separator-notes', '{{ separator_notes }}');
+    section.setAttribute('data-charset', '{{ charset }}');
 
     var time = Math.round(Date.now() / 1000);
     localStorage.setItem('mdslide_last_refresh', time);

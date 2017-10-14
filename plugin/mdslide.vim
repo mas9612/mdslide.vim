@@ -22,6 +22,43 @@ function! s:init()
     redir END
   endif
 
+  " read reveal.js config from .vimrc
+  let separator = get(g:, 'mdslide_data_separator', '^\r?\n---\r?\n$')
+  let separator_vertical = get(g:, 'mdslide_data_separator_vertical', '^\r?\n\r?\n\r?\n')
+  let separator_notes = get(g:, 'mdslide_data_separator_notes', '^note:')
+  let charset = get(g:, 'mdslide_data_charset', 'utf-8')
+
+  " generate mdslide.js
+  let tpl_path = s:base_dir . '/view/js/mdslide/mdslide.js.tpl'
+  if !filereadable(tpl_path)
+    echohl ErrorMsg
+    echo 'view/js/mdslide/mdslide.js.tpl is not exists. Please reinstall mdslide.vim.'
+    echohl None
+    return
+  endif
+
+  let js_content = []
+  let re_sep = '\v\{\{\s*separator\s*}}'
+  let re_sep_vert = '\v\{\{\s*separator_vertical\s*}}'
+  let re_sep_notes = '\v\{\{\s*separator_notes\s*}}'
+  let re_charset = '\v\{\{\s*charset\s*}}'
+  for line in readfile(tpl_path)
+    if line =~# re_sep
+      let line = substitute(line, re_sep, separator, '')
+    elseif line =~# re_sep_vert
+      let line = substitute(line, re_sep_vert, separator_vertical, '')
+    elseif line =~# re_sep_notes
+      let line = substitute(line, re_sep_notes, separator_notes, '')
+    elseif line =~# re_charset
+      let line = substitute(line, re_charset, charset, '')
+    endif
+
+    call add(js_content, line)
+  endfor
+
+  let js_path = s:base_dir . '/view/js/mdslide/mdslide.js'
+  call writefile(js_content, js_path)
+
   augroup MdSlide
     autocmd BufWritePost <buffer> :call mdslide#refresh_content()
   augroup END
