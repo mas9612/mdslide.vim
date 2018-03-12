@@ -176,3 +176,8 @@ ul, ol, div, p {
 	position: absolute;
 	font-size: 14px;
 }
+
+li {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}
